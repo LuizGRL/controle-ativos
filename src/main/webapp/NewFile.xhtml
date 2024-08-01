@@ -1,25 +1,102 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-    <title>Insert title here</title>
-</head>
-<h:body>
-    <h1> DSIOAJDIUASHDASD</h1>
-    <h:form>
-        <h:panelGrid columns="2">
-            <h:outputText value="Hostname" />
-            <h:inputText value="#{maquinaBean.maquina.nome}" />
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastro de máquina</title>
 
-            <h:outputText value="Descrição" />
-            <h:inputText value="#{maquinaBean.maquina.descricao}" />
+	<h:outputStylesheet library="luizgrl" name="teste.css" />
 
-            <h:commandButton value="Adicionar" action="#{maquinaBean.createMaquina()}"/>
-        </h:panelGrid>
-    </h:form>
-</h:body>
+</h:head>
+<body>
+	<header> <h:graphicImage library="luizgrl"
+		name="imagem_2024-07-31_190933403.jpg" />
+	<h3>Teste</h3>
+	</header>
+
+	<div class="center-form">
+		<h:form>
+			<h:messages globalOnly="true" style="color:red;" />
+			<h:panelGrid columns="2">
+
+				<p:outputLabel value="Hostname" for="hostname" />
+				<h:panelGroup>
+					<p:inputText id="hostname" value="#{maquinaBean.maquina.hostname}" />
+					<p:message for="hostname" style="color:red;" />
+				</h:panelGroup>
+
+				<p:outputLabel value="Descrição" for="descricao"/>
+				<h:panelGroup>
+					<p:inputText id="descricao" value="#{maquinaBean.maquina.descricao}" />
+					<p:message for="descricao" style="color:red;" />
+				</h:panelGroup>
+
+				<p:outputLabel value="Processador" for="processador"/>
+				<h:panelGroup>
+					<p:inputText id="processador"
+						value="#{maquinaBean.maquina.processador}" />
+					<p:message for="processador" style="color:red;" />
+				</h:panelGroup>
+
+				<p:outputLabel value="Qnt Memória" for="quantidadeMemoria"/>
+				<h:panelGroup>
+					<p:inputText id="quantidadeMemoria"
+						value="#{maquinaBean.maquina.quantidadeMemoria}" />
+					<p:message for="quantidadeMemoria" style="color:red;" />
+				</h:panelGroup>
+
+				<p:outputLabel value="Qnt Armazenamento" for="quantidadeArmazenamento"/>
+				<h:panelGroup>
+					<p:inputText id="quantidadeArmazenamento"
+						value="#{maquinaBean.maquina.quantidadeArmazenamento}" />
+					<p:message for="quantidadeArmazenamento" style="color:red;" />
+				</h:panelGroup>
+
+				<p:outputLabel value="Em Uso" for="emUso" />
+				<h:panelGroup>
+					<p:selectOneMenu id="emUso" value="#{maquinaBean.maquina.emUso}">
+						<f:selectItem itemValue="true" itemLabel="Sim" />
+						<f:selectItem itemValue="false" itemLabel="Não" />
+					</p:selectOneMenu>
+					<p:message for="emUso" style="color:red;" />
+				</h:panelGroup>
+
+				<p:commandButton value="Adicionar"
+					action="#{maquinaBean.createMaquina()}" update="@form"/>
+			</h:panelGrid>
+		</h:form>
+
+		<p:dataTable value="#{maquinaBean.maquinas}" var="maquina">
+			<p:column>
+				<f:facet name="header">Hostname</f:facet>
+                #{maquina.hostname}
+            </p:column>
+			<p:column>
+				<f:facet name="header">Descrição</f:facet>
+                #{maquina.descricao}
+            </p:column>
+			<p:column>
+				<f:facet name="header">Processador</f:facet>
+                #{maquina.processador}
+            </p:column>
+			<p:column>
+				<f:facet name="header">Qnt Memória</f:facet>
+                #{maquina.quantidadeMemoria}
+            </p:column>
+			<p:column>
+				<f:facet name="header">Qnt Armazenamento</f:facet>
+                #{maquina.quantidadeArmazenamento}
+            </p:column>
+			<p:column>
+				<f:facet name="header">Em uso</f:facet>
+                #{maquina.emUso ? 'Sim' : 'Não'}
+            </p:column>
+		</p:dataTable>
+
+	</div>
+</body>
 </html>

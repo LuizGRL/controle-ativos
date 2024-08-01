@@ -1,7 +1,9 @@
 package com.luizgrl.service;
-
 import com.luizgrl.dao.MaquinaDAO;
 import com.luizgrl.model.Maquina;
+
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -17,5 +19,10 @@ public class MaquinaService {
 
     public Maquina findMaquinaById(long id) {
         return maquinaDAO.findById(id);
+    }
+    
+    public List<Maquina> findAllMaquinas() {
+    	return maquinaDAO.findAllMaquinas();
+    	
     }
 }
