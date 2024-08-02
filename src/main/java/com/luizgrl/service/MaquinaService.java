@@ -17,7 +17,7 @@ public class MaquinaService {
         maquinaDAO.create(maquina);
     }
 
-    public Maquina findMaquinaById(long id) {
+    public Maquina findMaquinaById(int id) {
         return maquinaDAO.findById(id);
     }
     

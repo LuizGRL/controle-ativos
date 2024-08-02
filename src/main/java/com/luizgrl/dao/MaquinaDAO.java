@@ -21,7 +21,7 @@ public class MaquinaDAO {
         em.persist(maquina);
     }
     
-    public Maquina findById(long id) {
+    public Maquina findById(int id) {
         return em.find(Maquina.class, id);
     }
     

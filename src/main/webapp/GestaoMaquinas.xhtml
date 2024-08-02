@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="WEB-INF/template/LayoutPadrao.xhtml">
+
+	<ui:define name="title">
+Teas
+</ui:define>
+
+	<ui:define name="body">
+
+		<h:form>
+			<p:messages id="messages" autoUpdate="true" />
+			<p:toolbar>
+				<f:facet name="left">
+
+					<p:inputText placeholder="padrao" value="#{maquinaBean.idMaquina}" />
+					<p:spacer width="5" />
+
+					<p:commandButton value="pesquisar" icon="pi pi-search"
+						styleClass="toolbar-button"  actionListener="#{maquinaBean.findById()}" update="@form"/>
+					<p:spacer width="20" />
+
+					<p:commandButton value="Novo" icon="pi pi-plus" onclick="PF('maquinaDialogWidgetVar').show()" type="button" />
+
+					<p:spacer width="20" />
+
+					<p:commandButton icon="pi pi-pencil" styleClass="toolbar-button" />
+					<p:spacer width="5" />
+					<p:commandButton icon="pi pi-trash" styleClass="toolbar-button" />
+
+				</f:facet>
+			</p:toolbar>
+			<p:dataTable id="maquinasTable" value="#{maquinaBean.maquinas}" var="maquina"
+				emptyMessage="Nenhuma máquina foi cadastrada" paginator="true"
+				rows="5" paginatorPosition="bottom">
+				<p:column>
+					<f:facet name="header">Id</f:facet>
+                #{maquina.id}
+                </p:column>
+				<p:column sortBy="#{maquina.hostname}">
+					<f:facet name="header">Hostname</f:facet>
+                #{maquina.hostname}
+            </p:column>
+				<p:column>
+					<f:facet name="header">Descrição</f:facet>
+                #{maquina.descricao}
+            </p:column>
+				<p:column>
+					<f:facet name="header">Processador</f:facet>
+                #{maquina.processador}
+            </p:column>
+				<p:column>
+					<f:facet name="header">Qnt Memória</f:facet>
+                #{maquina.quantidadeMemoria}
+            </p:column>
+				<p:column>
+					<f:facet name="header">Qnt Armazenamento</f:facet>
+                #{maquina.quantidadeArmazenamento}
+            </p:column>
+				<p:column>
+					<f:facet name="header">Em uso</f:facet>
+                #{maquina.emUso ? 'Sim' : 'Não'}
+            </p:column>
+			</p:dataTable>
+			<p:dialog header="Nova Máquina" widgetVar="maquinaDialogWidgetVar"
+				modal="true" showHeader="true" width="400" height="300" closeOnEscape="true">
+				<p:commandButton value="tese" />
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
